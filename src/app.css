@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+ 
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+ 
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --ring: 240 10% 3.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+ 
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+ 
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+ 
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --ring: 240 4.9% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.game {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    background-image: url('/gif/space.gif');
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem;
+}
+.coliseum {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.starwars-pressed-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: transparent;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 2px solid #ffe81f;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.starwars-pressed-btn span {
+    position: relative;
+    z-index: 20;
+}
+
+.starwars-pressed-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 232, 31, 0.5), transparent);
+    transition: all 0.4s ease;
+    z-index: 20;
+}
+
+.starwars-pressed-btn:hover {
+    color: #000;
+    background-color: #ffe81f;
+    border-color: #ffe81f;
+    z-index: 20;
+}
+
+.starwars-pressed-btn:hover::before {
+    left: 100%;
+    z-index: 20;
+}
+
+.starwars-pressed-btn:hover span {
+    color: black;
+    z-index: 20;
+}
+
+.starwars-pressed-btn:active {
+    background-color: #ffd700;
+    transform: scale(0.95);
+    border-color: #ffd700;
+    transition: all 0.1s ease;
+    z-index: 20;
+}
+
+.eleccion {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 20;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.card-container {
+    perspective: 1000px;
+    margin: 20px;
+}
+
+.card {
+    width: 350px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.card-container:hover .card {
+    transform: scale(1.05) rotateY(180deg);
+}
+
+.card-container:hover .overlay {
+    opacity: 1;
+}
+
+.card-container.active:hover .card {
+    transform: scale(1.05);
+}
+/* Estilos para el menú flotante */
+.floating-menu {
+position: fixed;
+bottom: 2rem;
+left: 50%;
+transform: translateX(-50%); /* Para centrar el menú */
+background-color: rgba(255, 255, 255, 0.7);
+padding: 10px;
+border-radius: 100px;
+display: flex;
+justify-content: center;
+}
+
+.floating-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.floating-menu li {
+    flex: 1;
+    text-align: center;
+}
+
+.floating-menu a {
+    color: #ffe81f;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.floating-menu img{
+    width: 55px;
+    height: 55px;    
+    padding: 10px;
+    border-radius: 100px;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.floating-menu img:hover{
+    background: #cfcfcf;
+
+}
