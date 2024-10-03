@@ -47,7 +47,7 @@
 	{#if gameState == GameState.SIN_GUERREROS}
 		<button class="coliseum flex items-center justify-center" on:click={traerGuerreros}>
 			<div class="starwars-pressed-btn">
-				<span>Buscar guerreros</span>
+				<span>Buscar combatientes</span>
 			</div>
 		</button>
 	{/if}
