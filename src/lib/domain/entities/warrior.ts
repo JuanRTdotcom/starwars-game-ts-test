@@ -9,6 +9,10 @@ export class Warrior implements WarriorInterface {
         public colorOjos: string,
         public genero: string,
         public mundo: string,
-        public imagen: string
+        public imagen: string,
+        public seleccionado: boolean
     ) { }
+    static empty(): Warrior {
+        return new Warrior('', '', 0, 0, '', '', '', '',false);
+    }
 }

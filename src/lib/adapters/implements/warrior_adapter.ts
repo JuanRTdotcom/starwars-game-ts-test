@@ -12,19 +12,27 @@ export class WarriorAdapter implements WarriorAdapterInterface {
 
     async obtenerGuerreros(): Promise<Warrior[]> {
         const data = await this.repository.obtenerGuerreros();
+        let seleccionadoInicial = Math.random() >= 0.5;
         const warriors: Warrior[] = data.map((personaje: any) => {
+            const seleccionadoIncidador = seleccionadoInicial;
+            seleccionadoInicial = !seleccionadoInicial;
             return {
-                id: personaje.url.split('/').filter(Boolean).pop() ?? '0',
+                id: personaje.url?personaje.url.split('/').filter(Boolean).pop() : '0',
                 nombre: personaje.name ?? 'Sin nombre',
-                altura: parseInt(personaje.height, 10) ?? 0,
-                peso: parseInt(personaje.mass, 10) ?? 0,
+                altura: personaje.height ? parseInt(personaje.height, 10) : 0,
+                peso: personaje.height ? parseInt(personaje.mass, 10) : 0,
                 colorOjos: personaje.eye_color ?? 'Sin color',
                 genero: personaje.gender ?? 'Sin genero',
                 mundo: personaje.homeworld ?? 'Sin mundo',
-                imagen: `https://starwars-visualguide.com/assets/img/characters/${personaje.url.split('/').filter(Boolean).pop()??'0'}.jpg`
+                imagen: personaje.url?`https://starwars-visualguide.com/assets/img/characters/${personaje.url.split('/').filter(Boolean).pop()}.jpg`:'/png/notfount.png',
+                seleccionado: seleccionadoIncidador,
             };
         });
         return warriors;
+    }
+
+    async registrarPuntuacion(nombre:string,puntos:number): Promise<boolean> {
+        return await this.repository.registrarmejorPuntuacion(nombre,puntos);        
     }
 
 }
