@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { WarriorAdapter } from '$lib/adapters/implements/warrior_adapter';
+	import type { Warrior } from '$lib/domain/entities/warrior';
 	import { GameState, gameStore, type GameStateType } from '$lib/store';
+	import { GetWarriorsUseCase } from '$lib/usecases/get_warriors';
 	import '../app.css';
 
 	let gameState: GameStateType;
@@ -18,13 +21,18 @@
 		});
 	};
 
-	let traerGuerreros = (): void => {
+	let traerGuerreros = async (): Promise<void> => {
 		gameStore.update((_) => {
 			return {
 				..._,
 				currentGameState: GameState.BUSCANDO_GUERREROS
 			};
 		});
+		let warriors: Warrior[] = [];
+		let adaptador = new WarriorAdapter();
+		let guerrerosUseCases = new GetWarriorsUseCase(adaptador);
+		warriors = await guerrerosUseCases.execute();
+		console.log(warriors);
 		setTimeout(() => {
 			gameStore.update((_) => {
 				return {
