@@ -97,3 +97,13 @@ El despliegue de la aplicación se realiza utilizando **Serverless Framework** c
 - **Serverless Framework**: Permite el despliegue de las funciones Lambda, con un fácil control sobre las configuraciones de API Gateway y DynamoDB.
 
 Este enfoque garantiza escalabilidad, bajo costo y alta disponibilidad para la aplicación, asegurando una arquitectura moderna y eficiente para soportar el tráfico y las solicitudes en tiempo real.
+
+### 4. Lamda functions
+- Agregar mejor puntuación
+![Descripción de la imagen](/documentation/lamda/addWinner.png)
+
+- Obtener mejores 3 del ranking
+![Descripción de la imagen](/documentation/lamda/getRanking.png)
+
+- Obtener querrero de SWAPI
+![Descripción de la imagen](/documentation/lamda/getWarrior.png)
