@@ -98,12 +98,12 @@ El despliegue de la aplicación se realiza utilizando **Serverless Framework** c
 
 Este enfoque garantiza escalabilidad, bajo costo y alta disponibilidad para la aplicación, asegurando una arquitectura moderna y eficiente para soportar el tráfico y las solicitudes en tiempo real.
 
-### 4. Lamda functions
+### 4. Lambda functions
 - Agregar mejor puntuación
-![Descripción de la imagen](/documentation/lamda/addWinner.png)
+![Descripción de la imagen](/documentation/lambda/addWinner.png)
 
 - Obtener mejores 3 del ranking
-![Descripción de la imagen](/documentation/lamda/getRanking.png)
+![Descripción de la imagen](/documentation/lambda/getRanking.png)
 
 - Obtener querrero de SWAPI
-![Descripción de la imagen](/documentation/lamda/getWarrior.png)
+![Descripción de la imagen](/documentation/lambda/getWarrior.png)
