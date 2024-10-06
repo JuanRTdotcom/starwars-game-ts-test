@@ -1,5 +1,9 @@
 # RIMAC | Prueba técnica | Star Wars Game API 👾🚀👩‍🚀
 
+
+**Solo versión desktop* 💻
+
+
 Este proyecto es una API creada en **Node.js** utilizando el **Serverless Framework** para su despliegue en **AWS Lambda**. El propósito es integrar la **Star Wars API (SWAPI)**, traducir sus modelos de respuesta al español y gestionar puntuaciones de un juego. El juego permite a los jugadores acumular puntos y, si superan los 6 puntos, agregar su puntuación al **Salón de la Fama**. La aplicación está implementada con una arquitectura **serverless** que usa AWS API Gateway, Lambda y DynamoDB para el almacenamiento de los datos de puntuación.
 
 - **Frontend:** SvelteKit para crear una experiencia web rápida y dinámica.
