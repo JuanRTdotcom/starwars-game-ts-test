@@ -1,255 +1,369 @@
-swagger: '2.0'
-info:
-  description: Rimac prueba térncia
-  version: '2024-10-05T11:01:37Z'
-  title: Rimac - Test AWS - SWAPI
-host: sts7yoxmu4.execute-api.us-east-2.amazonaws.com
-basePath: /dev
-schemes:
-  - https
-paths:
-  /rimac/fama:
-    post:
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/Profile'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-      x-amazon-apigateway-integration:
-        httpMethod: POST
-        uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:registrarEnSalonDeLaFama/invocations
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        passthroughBehavior: when_no_match
-        timeoutInMillis: 29000
-        contentHandling: CONVERT_TO_TEXT
-        type: aws
-    options:
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/Profile'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-            Access-Control-Allow-Methods:
-              type: string
-            Access-Control-Allow-Headers:
-              type: string
-      x-amazon-apigateway-integration:
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Methods: '''OPTIONS,POST'''
-              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        requestTemplates:
-          application/json: '{"statusCode": 200}'
-        passthroughBehavior: when_no_match
-        type: mock
-  /rimac/ranking:
-    get:
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/ProfileList'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-      x-amazon-apigateway-integration:
-        httpMethod: POST
-        uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:listarRanking/invocations
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        passthroughBehavior: when_no_match
-        timeoutInMillis: 29000
-        contentHandling: CONVERT_TO_TEXT
-        type: aws
-    options:
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/ProfileList'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-            Access-Control-Allow-Methods:
-              type: string
-            Access-Control-Allow-Headers:
-              type: string
-      x-amazon-apigateway-integration:
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
-              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        requestTemplates:
-          application/json: '{"statusCode": 200}'
-        passthroughBehavior: when_no_match
-        type: mock
-  /rimac/warrior:
-    get:
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/Warrior'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-      x-amazon-apigateway-integration:
-        httpMethod: POST
-        uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:obtenerGuerrero/invocations
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        requestTemplates:
-          application/json: |-
-            {
-                "id" : "$input.params('id')"
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Rimac prueba térncia",
+    "version": "2024-10-05T11:01:37Z",
+    "title": "Rimac - Test AWS - SWAPI"
+  },
+  "host": "sts7yoxmu4.execute-api.us-east-2.amazonaws.com",
+  "basePath": "/dev",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/rimac/fama": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
             }
-        passthroughBehavior: when_no_templates
-        timeoutInMillis: 29000
-        contentHandling: CONVERT_TO_TEXT
-        type: aws
-    options:
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: 200 response
-          schema:
-            $ref: '#/definitions/Warrior'
-          headers:
-            Access-Control-Allow-Origin:
-              type: string
-            Access-Control-Allow-Methods:
-              type: string
-            Access-Control-Allow-Headers:
-              type: string
-      x-amazon-apigateway-integration:
-        responses:
-          default:
-            statusCode: '200'
-            responseParameters:
-              method.response.header.Access-Control-Allow-Methods: '''GET,OPTIONS'''
-              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-        requestTemplates:
-          application/json: '{"statusCode": 200}'
-        passthroughBehavior: when_no_match
-        type: mock
-definitions:
-  Profile:
-    type: object
-    properties:
-      nombre:
-        type: string
-        description: Nombre del usuario
-      id:
-        type: string
-        description: Identificador único del usuario
-      puntos:
-        type: string
-        description: Puntuación del usuario
-  ProfileList:
-    type: array
-    items:
-      $ref: '#/definitions/Profile'
-  Warrior:
-    type: object
-    properties:
-      name:
-        type: string
-        description: Nombre del guerrero
-      height:
-        type: string
-        description: Altura del guerrero
-      mass:
-        type: string
-        description: Peso del guerrero
-      hair_color:
-        type: string
-        description: Color de pelo del guerrero
-      skin_color:
-        type: string
-        description: Color de piel del guerrero
-      eye_color:
-        type: string
-        description: Color de ojos del guerrero
-      birth_year:
-        type: string
-        description: Año de nacimiento del guerrero
-      gender:
-        type: string
-        description: Género del guerrero
-      homeworld:
-        type: string
-        description: URL del planeta de origen del guerrero
-      films:
-        type: array
-        items:
-          type: string
-          description: URLs de las películas en las que aparece el guerrero
-      species:
-        type: array
-        items:
-          type: string
-          description: URLs de las especies a las que pertenece el guerrero
-      vehicles:
-        type: array
-        items:
-          type: string
-          description: URLs de los vehículos que posee el guerrero
-      starships:
-        type: array
-        items:
-          type: string
-          description: URLs de las naves estelares que posee el guerrero
-      created:
-        type: string
-        format: date-time
-        description: Fecha en que se creó el registro del guerrero
-      edited:
-        type: string
-        format: date-time
-        description: Fecha de la última edición del registro del guerrero
-      url:
-        type: string
-        description: URL del recurso del guerrero
-
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:registrarEnSalonDeLaFama/invocations",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "timeoutInMillis": 29000,
+          "contentHandling": "CONVERT_TO_TEXT",
+          "type": "aws"
+        }
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "mock"
+        }
+      }
+    },
+    "/rimac/ranking": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/ProfileList"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:listarRanking/invocations",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "timeoutInMillis": 29000,
+          "contentHandling": "CONVERT_TO_TEXT",
+          "type": "aws"
+        }
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/ProfileList"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "mock"
+        }
+      }
+    },
+    "/rimac/warrior": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Warrior"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:644457727023:function:obtenerGuerrero/invocations",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "requestTemplates": {
+            "application/json": "{\n    \"id\" : \"$input.params('id')\"\n}"
+          },
+          "passthroughBehavior": "when_no_templates",
+          "timeoutInMillis": 29000,
+          "contentHandling": "CONVERT_TO_TEXT",
+          "type": "aws"
+        }
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/Warrior"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "mock"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "description": "Nombre del usuario"
+        },
+        "id": {
+          "type": "string",
+          "description": "Identificador único del usuario"
+        },
+        "puntos": {
+          "type": "string",
+          "description": "Puntuación del usuario"
+        }
+      }
+    },
+    "ProfileList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Profile"
+      }
+    },
+    "Warrior": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nombre del guerrero"
+        },
+        "height": {
+          "type": "string",
+          "description": "Altura del guerrero"
+        },
+        "mass": {
+          "type": "string",
+          "description": "Peso del guerrero"
+        },
+        "hair_color": {
+          "type": "string",
+          "description": "Color de pelo del guerrero"
+        },
+        "skin_color": {
+          "type": "string",
+          "description": "Color de piel del guerrero"
+        },
+        "eye_color": {
+          "type": "string",
+          "description": "Color de ojos del guerrero"
+        },
+        "birth_year": {
+          "type": "string",
+          "description": "Año de nacimiento del guerrero"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Género del guerrero"
+        },
+        "homeworld": {
+          "type": "string",
+          "description": "URL del planeta de origen del guerrero"
+        },
+        "films": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "URLs de las películas en las que aparece el guerrero"
+          }
+        },
+        "species": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "URLs de las especies a las que pertenece el guerrero"
+          }
+        },
+        "vehicles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "URLs de los vehículos que posee el guerrero"
+          }
+        },
+        "starships": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "URLs de las naves estelares que posee el guerrero"
+          }
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Fecha en que se creó el registro del guerrero"
+        },
+        "edited": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Fecha de la última edición del registro del guerrero"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL del recurso del guerrero"
+        }
+      }
+    }
+  }
+}

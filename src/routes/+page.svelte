@@ -99,15 +99,6 @@
 		jugar();
 	}
 
-	// let revelarGuerrero = (event : MouseEvent): void => {;
-	// 	const card = event.currentTarget as HTMLElement;
-	// 	card.classList.toggle('active');
-	// 	if (card.style.transform === 'rotateY(0deg)') {
-	// 		card.style.transform = 'rotateY(180deg)';
-	// 	} else {
-	// 		card.style.transform = 'rotateY(360deg)';
-	// 	}
-	// }
 	let elegirGuerrero = (warrior : Warrior): void => {
 		if (warrior == guerreroAelegir){
 			ultimaPuntuacion++;
